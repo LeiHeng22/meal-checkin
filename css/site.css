@@ -1,0 +1,336 @@
+:root {
+  --paper: #e7edf4;
+  --card: #fbfcfd;
+  --ink: #1b2a4a;
+  --steel: #5e6d7e;
+  --line: #d5dee8;
+  --chop: #c7363b;
+  --yam: #c56a12;
+  --pot: #1f7a6a;
+  --pot-wash: #e7f4f0;
+  --hole: #e7edf4;
+  --display: "Songti SC", "STSong", "SimSun", "Noto Serif SC", serif;
+  --body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --mono: "Cascadia Mono", "Sarasa Mono SC", "Consolas", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+button, input {
+  font: inherit;
+  color: inherit;
+}
+
+button { cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.sheet {
+  width: min(440px, 100%);
+  margin: 0 auto;
+  padding: 18px 16px calc(28px + env(safe-area-inset-bottom));
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--steel);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 72px 1fr 72px;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.nav-btn, .text-btn, .primary, .ghost {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  min-height: 44px;
+}
+
+.nav-btn { padding: 0 8px; }
+
+.date-block { text-align: center; }
+
+.date-block p {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.text-btn, .primary, .ghost { padding: 0 14px; }
+
+.text-btn {
+  border: 0;
+  background: transparent;
+  color: var(--yam);
+  min-height: 32px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sync {
+  min-height: 1.4em;
+  margin: 8px 0 0;
+  color: var(--steel);
+  font-size: 13px;
+}
+
+.sync.is-ok { color: var(--pot); }
+.sync.is-bad { color: var(--chop); }
+
+.ticket {
+  margin-top: 14px;
+  padding: 18px 16px 8px 28px;
+  background-color: var(--card);
+  background-image: radial-gradient(circle at 0 14px, var(--hole) 7px, transparent 7.5px);
+  background-size: 18px 28px;
+  background-repeat: repeat-y;
+  box-shadow: 0 12px 28px rgba(27, 42, 74, 0.08);
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.week button {
+  border: 0;
+  background: transparent;
+  padding: 4px 0 8px;
+  min-height: 52px;
+  color: var(--steel);
+}
+
+.week button em {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  color: var(--steel);
+}
+
+.week button strong {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.week button span {
+  display: block;
+  height: 4px;
+  margin-top: 6px;
+  background: var(--line);
+  border-radius: 99px;
+}
+
+.week button.is-selected { color: var(--ink); }
+.week button.is-today strong { color: var(--yam); }
+
+.hero { margin: 8px 0 12px; }
+
+.hero h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+}
+
+.pot {
+  margin: 6px 0 0;
+  color: var(--yam);
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+.progress {
+  margin: 6px 0 0;
+  color: var(--steel);
+  font-size: 14px;
+}
+
+.section {
+  border-top: 1px solid var(--line);
+  padding: 12px 0 14px;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.section h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.section .hint {
+  margin: 4px 0 8px;
+  color: var(--steel);
+  font-size: 13px;
+}
+
+.chop {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  color: transparent;
+  display: grid;
+  place-items: center;
+  font-family: var(--display);
+  font-size: 16px;
+  transform: rotate(-14deg);
+}
+
+.section.is-done .chop {
+  border-color: var(--chop);
+  color: var(--chop);
+  animation: stamp 0.28s ease-out;
+}
+
+@keyframes stamp {
+  from { transform: rotate(-14deg) scale(1.35); opacity: 0; }
+  to { transform: rotate(-14deg) scale(1); opacity: 1; }
+}
+
+.row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  min-height: 48px;
+  padding: 6px 4px;
+}
+
+.row .mark {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+
+.row .amount {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--steel);
+  text-align: right;
+  max-width: 42%;
+}
+
+.row[aria-pressed="true"] { background: var(--pot-wash); }
+.row[aria-pressed="true"] .mark {
+  background: var(--pot);
+  border-color: var(--pot);
+  color: white;
+}
+
+.extra { padding-bottom: 12px; }
+
+.field { margin-bottom: 12px; }
+
+.field span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.field input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0 12px;
+  background: #fff;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.foot a { color: var(--steel); font-size: 13px; }
+
+dialog {
+  width: min(420px, calc(100% - 24px));
+  border: 0;
+  border-radius: 16px;
+  padding: 18px 16px 16px;
+  color: var(--ink);
+}
+
+dialog::backdrop { background: rgba(27, 42, 74, 0.45); }
+
+dialog h2 { margin: 0 0 8px; font-size: 22px; }
+
+dialog ol { margin: 8px 0 12px; padding-left: 1.2em; }
+
+dialog li { margin: 6px 0; }
+
+dialog a { color: var(--yam); }
+
+.token {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0 12px;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.primary {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+}
+
+.warn {
+  margin: 10px 0 0;
+  color: var(--steel);
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section.is-done .chop { animation: none; }
+}
